@@ -3,13 +3,13 @@ import json
 from src import db
 
 
-customers = Blueprint('customers', __name__)
+customer = Blueprint('customer', __name__)
 
-# Get all customers from the DB
-@customers.route('/customers', methods=['GET'])
+# Get all available menu items
+@customer.route('/menu', methods=['GET'])
 def get_customers():
     cursor = db.get_db().cursor()
-    cursor.execute('select * from Customer')
+    cursor.execute('select * from MenuItem')
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
@@ -20,8 +20,8 @@ def get_customers():
     the_response.mimetype = 'application/json'
     return the_response
 
-# Get customer detail for customer with particular userID
-@customers.route('/customers/<userID>', methods=['GET'])
+# Get the cart/current order for the customer with id <userID>
+@customer.route('/<userID>/cart', methods=['GET'])
 def get_customer(userID):
     cursor = db.get_db().cursor()
     cursor.execute('select * from customers where customerNumber = {0}'.format(userID))

@@ -5,8 +5,21 @@
 ### Flask app:
 
 - DB bootstrap file
+    - update sample data to have sufficient # of tuples and more accurate examples
 - Routes for Phase 2 wireframes + other routes (total > 8)
-- Remove all unnecessary routes
+    | Screen | Request type | Persona | Routes |
+    |--------|--------------|---------|--------|
+    | View cart/current order | GET  | Customer | /cust/\<userID>/cart
+    | View menu (+ favorites) | GET  | Customer | /cust/menu |
+    | Place current order     | POST | Customer | /cust/checkout
+    | View order queue        | GET  | Chef | /chef/queue
+    | Updating order status   | POST | Chef | /chef/update-order
+    | Add new menu items      | POST | Chef | /chef/add-item
+    | View inventory/ingredients in stock | GET | Manager | /admin/inventory
+    | Access supplier list and past orders | GET | Manager | /admin/supplier-orders
+    | Place ingredient order  | POST | Manager | /admin/place-order
+    
+- Remove all unnecessary routes 
 
 ### AppSmith app:
 - 4+ pages (screens) that connect to Flask API
