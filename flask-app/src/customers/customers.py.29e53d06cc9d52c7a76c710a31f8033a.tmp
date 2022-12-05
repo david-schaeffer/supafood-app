@@ -9,7 +9,8 @@ customers = Blueprint('customers', __name__)
 @customers.route('/customers', methods=['GET'])
 def get_customers():
     cursor = db.get_db().cursor()
-    cursor.execute('select * from Customer')
+    cursor.execute('select customerName,\
+        creditLimit from customers')
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
