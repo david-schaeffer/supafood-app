@@ -5,8 +5,8 @@ from src import db
 
 chef = Blueprint('chef', __name__)
 
-# Get all customers from the DB
-@chef.route('/admin', methods=['GET'])
+# View the queue of orders to complete
+@chef.route('/queue', methods=['GET'])
 def get_admin():
     cursor = db.get_db().cursor()
     cursor.execute('select * from Customer')
@@ -20,8 +20,8 @@ def get_admin():
     the_response.mimetype = 'application/json'
     return the_response
 
-# Get customer detail for customer with particular userID
-@chef.route('/customers/<userID>', methods=['GET'])
+# Update the status of an order
+@chef.route('/update-order', methods=['POST'])
 def get_customer(userID):
     cursor = db.get_db().cursor()
     cursor.execute('select * from customers where customerNumber = {0}'.format(userID))
@@ -34,3 +34,6 @@ def get_customer(userID):
     the_response.status_code = 200
     the_response.mimetype = 'application/json'
     return the_response
+
+# Add a new menu item
+# TODO implement

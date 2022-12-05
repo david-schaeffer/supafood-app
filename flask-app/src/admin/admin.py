@@ -5,7 +5,7 @@ from src import db
 
 admin = Blueprint('admin', __name__)
 
-# Get all ingredient inventory the DB
+# Get all ingredient inventory in the DB
 @admin.route('/inventory', methods=['GET'])
 def get_inventory():
     cursor = db.get_db().cursor()
@@ -22,9 +22,9 @@ def get_inventory():
 
 # Access supplier list and past orders
 @admin.route('/supplier-orders', methods=['GET'])
-def get_suppliers(userID):
+def get_suppliers():
     cursor = db.get_db().cursor()
-    cursor.execute('select * from customers where customerNumber = {0}'.format(userID))
+    cursor.execute('select * from (IngredientOrder NATURAL JOIN Supplier)')
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()

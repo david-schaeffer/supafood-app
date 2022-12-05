@@ -20,6 +20,11 @@ def get_customers():
     the_response.mimetype = 'application/json'
     return the_response
 
+
+# TODO: complete
+# @customer.route('add-item/<itemID>', methods=['POST'])
+# def add_item(itemID):
+    
 # Get the cart/current order for the customer with id <userID>
 @customer.route('/<userID>/cart', methods=['GET'])
 def get_customer(userID):

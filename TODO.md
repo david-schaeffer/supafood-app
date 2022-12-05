@@ -10,7 +10,7 @@
     | Screen | Request type | Persona | Routes |
     |--------|--------------|---------|--------|
     | View cart/current order | GET  | Customer | /cust/\<userID>/cart
-    | View menu (+ favorites) | GET  | Customer | /cust/menu |
+    | View menu               | GET  | Customer | /cust/menu |
     | Place current order     | POST | Customer | /cust/checkout
     | View order queue        | GET  | Chef | /chef/queue
     | Updating order status   | POST | Chef | /chef/update-order
@@ -35,3 +35,22 @@
     - demo of AppSmith screens (show that data is updating in DB for POST screen)
 - GitHub repo w/ all necessary code and infrastructure; include top-level updated README.md 
 - UI implemented in AppSmith server
+
+## Responsibilities:
+
+Anusha: 
+- finish admin.py
+- work on appsmith integration
+
+
+David: 
+- update sample data in DB
+- chef.py?
+
+Jacqueline: 
+- finish customer.py
+
+Ahmed: 
+- work on appsmith pages (Figma wireframes and API integration)
+
+Next meeting: 12/06/2022 @ 5:30 - 6 pm
