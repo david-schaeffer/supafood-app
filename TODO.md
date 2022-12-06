@@ -42,7 +42,6 @@ Anusha:
 - finish admin.py
 - work on appsmith integration
 
-
 David: 
 - update sample data in DB
 - chef.py?
