@@ -13,13 +13,12 @@ def home():
 # This is a sample route for the /test URI.  
 # as above, it just returns a simple string. 
 # Get all available menu items
-@views.route('/menu', methods=['GET'])
+@views.route('/categories', methods=['GET'])
 def get_customers():
     cursor = db.get_db().cursor()
     cursor.execute(
     '''
-        select * from MenuItem
-        where active = 1
+        select name as label, category_id as value from Category
     ''')
     row_headers = [x[0] for x in cursor.description]
     json_data = []
