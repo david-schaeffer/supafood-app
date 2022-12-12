@@ -10,13 +10,13 @@ chef = Blueprint('chef', __name__)
 def get_admin():
     cursor = db.get_db().cursor()
     cursor.execute('''
-        select quantity as Quantity, menu_item_id as Item 
-        from OrderLine
-        where order_line_id in (
-            select order_line_id
-            from OrderLine
-            where order_id in (1, 2, 3)
-        )
+        select OL.quantity as Quantity, MI.name as Item
+        from OrderLine OL
+            join MenuItem MI on MI.menu_item_id = OL.menu_item_id
+        where order_line_id in (select OL.order_line_id
+                                from OrderLine OL
+                                    join CustomerOrder CO on OL.order_id = CO.order_id
+                                where CO.queue_order <= 3);
     ''')
     row_headers = [x[0] for x in cursor.description]
     json_data = []
@@ -76,5 +76,29 @@ def get_menu_items():
 
 @chef.route('/menu-items', methods=['POST'])
 def add_menu_item():
-    name = request.form
-    return f'<h1>Menu item: {name}.</h1>'
+    cursor = db.get_db().cursor()
+    name = request.form['name']
+    description = request.form['description']
+    calories = request.form['calories']
+    unit_price = request.form['unit_price']
+    active = request.form['active']
+    query = f'''INSERT INTO 
+            MenuItem (
+                name, 
+                description, 
+                calories, 
+                unit_price, 
+                active
+            ) 
+        VALUES 
+            (
+                \"{name}\", 
+                \"{description}\",
+                {calories}, 
+                {unit_price}, 
+                {active}
+            );
+    '''
+    cursor.execute(query)
+    db.get_db().commit()
+    return "Successfully added menu item!"
