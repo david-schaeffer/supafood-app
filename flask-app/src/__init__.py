@@ -28,10 +28,12 @@ def create_app():
     from src.views import views
     from src.customer.customer import customer
     from src.chef.chef import chef
+    from src.admin.admin import admin
 
     # Register the routes that we just imported so they can be properly handled
     app.register_blueprint(views,       url_prefix='')
     app.register_blueprint(customer,   url_prefix='/cust')
     app.register_blueprint(chef,    url_prefix='/chef')
+    app.register_blueprint(admin, url_prefix='/admin')
 
     return app

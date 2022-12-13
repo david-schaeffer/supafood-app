@@ -8,11 +8,9 @@ views = Blueprint('views', __name__)
 # we simply return a string.  
 @views.route('/')
 def home():
-    return ('<h1>Hello from your web app!!</h1>')
+    return ('<h1>Supafood</h1>')
 
-# This is a sample route for the /test URI.  
-# as above, it just returns a simple string. 
-# Get all available menu items
+# Return all the menu item categories 
 @views.route('/categories', methods=['GET'])
 def get_customers():
     cursor = db.get_db().cursor()
