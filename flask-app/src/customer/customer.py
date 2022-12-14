@@ -4,32 +4,6 @@ from src import db
 
 customer = Blueprint('customer', __name__)
 
-# add selected item to order 
-@customer.route('add-item/<itemID>', methods=['POST'])
-def add_item(itemID):
-    cursor = db.get_db().cursor()
-    name = request.form['name']
-    description = request.form['description']
-    calories = request.form['calories']
-    unit_price = request.form['unit_price']
-    query = f'''INSERT INTO 
-            CustomerOrder (
-                name, 
-                description, 
-                calories, 
-                unit_price
-            ) 
-        VALUES 
-            (
-                \"{name}\", 
-                \"{description}\",
-                {calories}, 
-                {unit_price}
-            );
-    '''
-    cursor.execute(query)
-    db.get_db().commit()
-
 # Get the cart/current order for the customer with id <userID>
 @customer.route('/<userID>/cart', methods=['GET'])
 def get_customer(userID):
