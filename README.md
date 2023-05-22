@@ -1,5 +1,7 @@
 # Supafood
 
+*School project for CS 3200 - Database Design at Northeastern University*
+
 ### A Restaurant Management App by Foodies Inc.
 
 **Supafood** is a restaurant management app that streamlines the logistics of restaurant operations. It provides interfaces for all users from the front-end to the back-end including customers, cook staff, and management.
